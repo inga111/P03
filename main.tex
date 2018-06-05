@@ -1,0 +1,149 @@
+\documentclass{report}
+\usepackage{polyglossia}
+\usepackage{fixlatvian}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{pgfplots}
+\graphicspath{{bildes/}}
+\title{Laboratorijas darba atskaite}
+\author{Inga Mukane}
+
+\begin{document}
+\maketitle
+%=============================
+\chapter{Teorētiskā daļa}
+\section{Ķēdes aprēķins}
+Sprieguma avota V1 vērtība ir studenta apliecības pēdējie trīs cipari dalīti ar 10. R1 ir apliecības pēdējo 3 ciparu otrais numurs + 1, R2 ir apliecības numura pēdējais cipars + 1. Apliecības numurs: 171REB154. Sprieguma kritumu vērtības $U_{R1}$ un $U_{R2}$ tika aprēķinātas pēc formulas:\\ $$U_{R1}=\frac{R1}{R1+R2}\cdot V1$$\\
+Rezultāti ir apskatāmi tabulā \ref{table:ta} un shēma ir aplūkojama attelos \ref{fig:sh} un \ref{fig:sh2} Atskaite tika sagatavota izmantojot sharelatex.com \cite{1} \cite{2} piedāvātos mācību palīglidzekļus, uz kuriem saites ir pieejamas bibliogrāfijas sarakstā, kā arī citus interneta resursus.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}[h]{|c|c|}
+\hline
+$R1$ & 6 $\Omega$\\
+\hline
+$R2$ & 5 $\Omega$\\
+\hline
+$V1$ & 15.4 V\\
+\hline
+$U_{R_1}$ & 8.4 V\\
+\hline
+$U_{R_2}$ & 7 V\\
+\hline
+\end{tabular}
+\caption{}
+\label{table:ta}
+\end{table}
+
+
+
+\begin{figure}[t]
+\centering
+\begin{circuitikz}
+\draw
+(0,0) to[european voltage source, l_=$V_1$] (0,4)
+to[european resistor, l_=$R_1$] (4,4)
+to[european resistor, l_=$R_2$] (4,0) -- (0,0)
+;
+\end{circuitikz}
+\caption{}
+\label{fig:sh}
+\end{figure}
+
+\begin{figure}[!b]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={$U_{R_{2}}=f(R_2)$},
+    xlabel={$R_2$ [$\Omega$]},
+    ylabel={$U_{R_{2}}$ [V]},
+    xmin=5, xmax=50,
+    ymin=0, ymax=15,
+    xtick={0,10,20,30,40,50},
+    ytick={0,5,10,15},
+    ymajorgrids=true,
+    xmajorgrids=true,
+    grid style=dashed,
+]
+\addplot[color=blue,]
+    coordinates {
+    (5,4)(10,9.1)(15,10.2)(20,12)(25,12.5)(30,13.5)(35,13.7)(40,13.9)(45,14.2)(50,14.4)
+    };
+\end{axis}
+\end{tikzpicture}
+\caption{}
+\label{fig:gr}
+\end{figure}
+%=============================
+\chapter{Praktiskā daļa}
+\section{Darbs ar GEDA programmām}
+\subsection{Darbs ar gschem}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{shema.png}
+    \caption{}
+    \label{fig:sh2}
+\end{figure}
+
+\newpage
+\subsection{Darbs ar gnetlist}
+\verbatiminput{bildes/01.net}
+
+\subsection{Darbs ar ngspice}
+Skatīt attēlus \ref{fig:2.1} un \ref{fig:2.2} 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{011.png}
+    \caption{Spriegums 1.vadā}
+    \label{fig:2.1}
+    \end{figure}
+ \begin{figure}[t]
+ \centering
+    \includegraphics[width=10cm]{013.png}
+    \caption{Spriegums 2.vadā}
+    \label{fig:2.2}
+\end{figure}
+\newpage
+\section{Darbs ar QUCS programmām}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{qucs_shema.png}
+    \caption{QUCS shēma}
+    \label{fig:2.3}
+    \end{figure}
+ 
+\begin{figure}[t] 
+\centering
+    \includegraphics[width=\textwidth, height=220 pt, keepaspectratio]{qucs_tabula.png}
+    \caption{Sweep simulācijas tabula}
+    \label{fig:2.4}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{sprieguma_grafiks.png}
+    \caption{Līdzstrāvas simulācijas grafiks}
+    \label{fig:2.5}
+\end{figure}
+\label{s_nobeigums}
+
+\begin{thebibliography}{9}
+\bibitem{1} 
+\textit{CircuiTikz package.} [Skatīts 2018. gada 3.junija].
+Pieejams: http://www.sharelatex.com/learn/CircuiTikz\_{}package
+
+\bibitem{2} 
+\textit{Pgfplots package.} [Skatīts 2018. gada 3.junija].
+Pieejams: http://www.sharelatex.com/learn/Pgfplots\_{}package
+ 
+\end{thebibliography}
+
+\end{document}
+
+
